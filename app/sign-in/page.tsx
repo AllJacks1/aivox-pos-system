@@ -1,10 +1,15 @@
-import React from "react";
-import Authentication from "../components/authentication/Authentication";
+import Authentication from "@/app/components/authentication/Authentication";
+
+async function handleLogin(email: string, password: string) {
+  "use server";
+
+  console.log("Login attempt:", email, password);
+}
 
 export default function SignInPage() {
   return (
     <div>
-      <Authentication />
+      <Authentication onSignIn={handleLogin} />
     </div>
   );
 }

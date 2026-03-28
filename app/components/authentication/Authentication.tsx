@@ -13,16 +13,30 @@ import {
 } from "@/components/ui/card";
 import { Sparkles, Eye, EyeOff } from "lucide-react";
 import { THEME } from "@/lib/styles";
+import { AuthenticationProps } from "@/lib/interfaces";
+import { useRouter } from "next/navigation";
 
-export default function Authentication() {
+export default function Authentication({ onSignIn }: AuthenticationProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    // Add your auth logic here
-    setTimeout(() => setIsLoading(false), 1000);
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("username") as string;
+    const password = formData.get("password") as string;
+
+    try {
+      await onSignIn?.(email, password);
+      router.push("/pos");
+    } catch (err) {
+      console.error("Sign-in failed:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
