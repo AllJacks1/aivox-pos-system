@@ -21,7 +21,7 @@ interface SidebarProps {
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/pos" },
-  { icon: ShoppingCart, label: "POS Terminal", href: "/transaction" },
+  { icon: ShoppingCart, label: "POS Terminal", href: "/pos/terminal" },
   { icon: Package, label: "Inventory", href: "/inventory" },
   { icon: BarChart3, label: "Reports", href: "/reports" },
   { icon: Users, label: "Customers", href: "/customers" },
@@ -35,7 +35,7 @@ export default function Sidebar({ sidebarOpen }: SidebarProps) {
 
   const isActive = (href: string) => {
     if (pathname === href) return true;
-    if (href !== "/" && pathname.startsWith(`${href}/`)) return true;
+    if (href !== "/pos" && pathname.startsWith(`${href}/`)) return true;
     return false;
   };
 
