@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -10,6 +11,7 @@ import { THEME } from "@/lib/styles";
 export default function NavigationBar({ navLinks }: NavigationBarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -62,6 +64,7 @@ export default function NavigationBar({ navLinks }: NavigationBarProps) {
             <Button
               variant="ghost"
               className="h-9 px-4 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+              onClick={() => router.push("/sign-in")}
             >
               Sign in
             </Button>
@@ -106,6 +109,7 @@ export default function NavigationBar({ navLinks }: NavigationBarProps) {
               <Button
                 variant="ghost"
                 className="w-full justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                onClick={() => router.push("/sign-in")}
               >
                 Sign in
               </Button>
