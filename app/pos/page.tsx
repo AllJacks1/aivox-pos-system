@@ -1,7 +1,16 @@
-import React from 'react'
+import React from "react";
+import POSDashboard from "../components/dashboard/Dashboard";
+import { DollarSign } from "lucide-react";
 
-export default function Home() {
+export default async function Home() {
   return (
-    <div>Home</div>
-  )
+    <POSDashboard
+      stats={[]}
+      paymentMethods={[]}
+      lowStockItems={[]}
+      recentTransactions={[]}
+      topProducts={[]}
+      branches={[]}
+    />
+  );
 }
